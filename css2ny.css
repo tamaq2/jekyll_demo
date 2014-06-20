@@ -1,0 +1,209 @@
+/* Zero down margin and paddin on all elements */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: 62.5% "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", Verdana, sans-serif;
+  background-color:#fff;
+}
+
+h1 {
+  font-size: 2.4em;
+  font-weight: normal;
+}
+
+h2 {
+  font-size: 2.0em;
+  font-weight: normal;
+}
+
+p, li {
+  font-size: 1.4em;
+}
+
+h1, h2, p {
+  margin: 1em 0;
+  margin-top: 0;
+}
+
+
+.branding h1 {
+  margin: 0;
+}
+
+.wrapper {
+  background-color: #fff;
+}
+
+
+/*header*/
+header {
+  height: 50px;
+  background-color:#fff;
+  padding-bottom: 43px;
+}
+
+header * {
+  display: inline;
+}
+
+header a {
+  text-decoration: none;
+  color: #000;
+  font-style: italic;
+  font-size: 3em;
+}
+
+
+.content .secondary .promo {
+	padding-left: 20px;
+}
+
+.footer {
+  background-color:#b0b0b0;
+  padding: 1px 20px;
+}
+
+/* The Core Technique
+================================= */
+
+body {
+  text-align: center; 
+  min-width: 960px;
+}
+
+.wrapper {
+  width: 1080px; 
+  margin: 0 auto; 
+  text-align: left;
+}
+
+.content {
+	overflow: hidden;
+}
+
+.content .primary { 
+  width: 720px;
+  float: left;
+}
+
+.content .secondary { 
+  width: 360px;
+  float: right; 
+} 
+
+
+
+/*nav*/
+
+#nav .nav {
+  list-style: none;
+  background-color:#eee;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+#nav .nav li {
+  float: left;
+  width: 14.285%
+}
+
+#nav .nav li a {
+  display: block;
+  line-height: 2.5em;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #000;
+}
+
+#nav .nav li:first-child a {
+  background-color: #d43;
+}
+
+/*search*/
+form {
+  padding: 1em 3em 3em;
+  margin-left: 1em;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-right: none;
+}
+
+form #wel {
+  font: 3em;
+}
+
+#most {
+  margin-left: 1em;
+  border-left: 1px solid #ddd;
+}
+
+#most ol {
+  width: 100%;
+  overflow: hidden;
+  padding-left: 2em;
+  padding-top: 1em;
+}
+
+#most ol a {
+  font-size: 0.8em;
+  color: #000;
+  text-decoration: none;
+}
+
+#most ul {
+  list-style: none;
+  width: 100%;
+  overflow: hidden;
+}
+
+#most ul li {
+  float: left;
+  overflow: hidden;
+  width: 33.3%;
+}
+
+#most ul li a {
+  display: block;
+  line-height: 2.5em;
+  text-align: center;
+  text-decoration: none;
+  color: #000;
+  background-color: #ddd;
+}
+
+#most li .white  {
+  background-color: #fff;
+}
+
+#image {
+  border-left: 1px solid #ddd;
+  position: relative; 
+}
+
+#image img {
+  padding: 2em;
+  margin: 0;
+  position: absolute;
+
+}
+
+#image #occupation {
+  position: relative;
+}
+
+/*article*/
+.primary .article {
+  border-left: 1px solid #ddd;
+  margin-top: 0
+}
+
+#shorts li a:hover {
+  background-color: #fff;
+}
+
