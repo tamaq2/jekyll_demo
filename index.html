@@ -1,530 +1,98 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Space Bowling</title>
-		<meta charset = "utf-8">
-		<style type="text/css">
-			* {
-				margin: 0; /*classical reset*/
-				padding: 0;
-			}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>TMQ's New Yorker</title>
+<link rel="icon" href="pigbro.jpg">
+<link rel="stylesheet" type="text/css" href="css2ny.css">
+<script type="text/javascript" src = "jquery-1.10.1.js"></script>
+<script type="text/javascript" src = "4_4jquery.js"></script>
 
-			html, body {
-				height: 100%;
-				width: 100%;
-			}
+</head>
 
-			canvas {
-				display: block; /*avoid rollbar appear*/
-			}
+<body>
 
-			body {
-				background: #000;
-				color: #fff;
-				font-family: Verdana, Arial, sans-serif;
-				font-size: 18px;
-			}
+<div class="wrapper">
+<header>
+  <img src="pigbro.png" id = "website_id">   <!--站点ID-->
+  <h1 class = "title" id = "website_name"><a href="#">TMQNY</a></h1>   <!--站点名称-->
+</header>
 
-			h1 {
-				font-size: 30px;
-			}
+<div id = "nav">
+  <ul class="nav"> 
+  <li><a href="#">Home</a></li>  
+  <li><a href="#">News</a></li> 
+  <li><a href="#">Photos</a></li> 
+  <li><a href="#">Products</a></li> 
+  <li><a href="#">Services</a></li> 
+  <li><a href="#">Clients</a></li> 
+  <li><a href="#">About</a></li>
+  </ul>
+</div>
 
-			p {
-				margin: 0 20px;
-			}
+<div class="content">
 
-			a {
-				color: #fff;
-				text-decoration: none;
-			}
+<div class="primary">
 
 
-			a:hover {
-				text-decoration: underline;
-			}
+<section class = "article">
+  <h1>Lorem ipsum dolor</h1>
+  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla.</p>
 
-			a.button {
-				background: #185da8;
-				border-radius: 5px;
-				display: block;
-				font-size: 30px;
-				margin: 40px 0 0 45px;
-				padding: 10px;
-				width: 200px
-			}
+  <h2>Ea commodo consequat</h2>
+  <p>Ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper.</p>
 
+  <p>Ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.</p>
 
+  <h2>Magna aliquam erat volutpat</h2>
+  <p>Magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
 
-			a.button:hover {
-				background: #2488f5;
-				color: #fff;
-				text-decoration: none;
-			}
+  <p>Aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+</section>
+</div>
 
-			#game {
-				height: 600px;
-				left: 50%;
-				margin: -300px 0 0 -175px;
-				position: relative;
-				top: 50%;
-				width: 350px;
-			}
 
-			#gameCanvas {
-				background: #001022;
-			}
 
-			#gameUI {
-				height: 600px;
-				position: absolute;
-				width: 350px;
-			}
 
-			#gameIntro, #gameComplete {
-				background: rgba(0, 0, 0, 0.5);
-				margin-top: 100px;
-				padding: 40px 0;
-				text-align: center;
-			}
+<div class="secondary">
 
-			#gameStats {
-				font-size: 14px;
-				margin: 20px 0;
-			}
 
-			#gameStats .gameReset {
-				margin: 20px 20px 0 0;
-				position: absolute;
-				right: 0;
-				top: 0;
-			}
-		</style>
-		<script type="text/javascript">
-			window.onload = function() {
-				var canvas = document.getElementById("gameCanvas");
-				var context = canvas.getContext("2d");
 
-				var canvasWidth = canvas.width;
-				var canvasHeight = canvas.height;
 
-			
-				//gamestart
-				var playGame;
+<form id = "searching">
+      <p id = "wel">Welcome</p>
+      <p><span>Search </span><input type = "text" id = "search_input" name = "search" value = "" title = "Search"><span> Find</span></p>
+</form>
+<div id = "most">
+  <ul id = "shorts">
+    <li><a href="#" class = "white">Most Popular</a></li>
+    <li><a href="#">Most E-mailed</a></li>
+    <li><a href="#">This Issue</a></li>
+  </ul>
 
-				//platform
-				var platformX;
-				var platformY;
-				var platformOuterRadius;
-				var platformInnerRadius;
+  <ol>
+    <li><a href="#">Sarah Miller: New Parenting Study Released</a></li>
+    <li><a href="#">Joshua Yaffa: Putin’s New War on “Traitors”</a></li>
+    <li><a href="#">John Cassidy: Piketty’s Inequality Story in Six Charts</a></li>
+    <li><a href="#">Richard Brody: Why Does It Matter If Heidegger Was Anti-Semitic?</a></li>
+    <li><a href="#">Ted Trautman: Why Used Video Games Are Such a Big Business</a></li>
+  </ol>
+</div>
 
-				//asteroids
-				var asteroids;
-				var Asteroid = function(x, y, radius, mass, friction) {
-					this.x = x;
-					this.y = y;
-					this.radius = radius;
-					this.mass = mass;
-					this.friction = friction;
-					this.vX = 0;
-					this.vY = 0;
-					this.player = false;
-				};
+<div class="promo">
+<p>Promo item goes here</p>
+</div>
 
-				//player
-				var player;
-				var playerOriginalX;
-				var playerOriginalY;
+</div>
 
-				//event listener
-				var playerSelected;
-				var playerMaxAbsVelocity;
-				var playerVelocityDampener;
-				var powerX;
-				var powerY;
+</div> 
 
-				//stats
-				var score;
-				score = 0;
+<div class="footer">
+<p>Footer</p>
+</div>
 
-				var ui = document.getElementById("gameUI");
-				var uiIntro = document.getElementById("gameIntro");
-				var uiStats = document.getElementById("gameStats");
-				var uiComplete = document.getElementById("gameComplete");
-				var uiPlay = document.getElementById("gamePlay");
-				var uiReset = document.getElementsByClassName("gameReset");
-				var uiRemaining = document.getElementById("gameRemaining");
-				var uiScore = document.getElementsByClassName("gameScore");
 
-				//层层计算offset......
-				function getOffsetLeft(o) {
-					var left = 0;
-					var offsetParent = o;
-					while (offsetParent != null && offsetParent != document.body)
-					{
-						left += offsetParent.offsetLeft;
-						offsetParent = offsetParent.offsetParent;
-					}
-					return left;
-				}
+</div>
 
-				function getOffsetTop(o) {
-					var top = 0;
-					var offsetParent = o;
-					while (offsetParent != null && offsetParent != document.body)
-					{
-						top += offsetParent.offsetTop;
-						offsetParent = offsetParent.offsetParent;
-					}
-					return top;
-				}
-
-				function resetPlayer() {
-					player.x = playerOriginalX;
-					player.y = playerOriginalY;
-					player.vX = 0;
-					player.vY = 0;
-				}
-
-
-
-				function startGame() {
-					playGame = false;
-					platformX = canvasWidth/2;
-					platformY = 150;
-					platformOuterRadius = 100;
-					platformInnerRadius = 75;
-
-					playerSelected = false;
-					playerMaxAbsVelocity = 30;
-					playerVelocityDampener = 0.3;
-					powerX = -1;
-					powerY = -1;
-
-					asteroids = []; //每次重启都能直接刷新为初始值
-
-					var pRadius = 15;
-					var pMass = 10;
-					var pFriction = 0.97;
-					playerOriginalX = canvasWidth/2;
-					playerOriginalY = canvasHeight - 150;
-					player = new Asteroid(playerOriginalX, playerOriginalY, pRadius, pMass, pFriction);
-					player.player = true;
-					asteroids.push(player);
-
-					
-
-					var outerRing = 8;
-					var ringCount = 3;
-					var ringSpacing = (platformInnerRadius/(ringCount-1));
-
-					for(var r = 0; r < ringCount; r++) {
-						var currentRing = 0;
-						var angle = 0;
-						var ringRadius = 0;
-
-						if(r === ringCount - 1) {
-							currentRing = 1;
-						} else {
-							currentRing = outerRing - (r*3);
-							angle = 360/currentRing;
-							ringRadius = platformInnerRadius - (ringSpacing * r);
-						}
-
-						for(var a = 0; a < currentRing; a++) {
-							var x = 0;
-							var y = 0;
-
-							if(r === ringCount-1) {
-								x = platformX;
-								y = platformY;
-							} else {
-								x = platformX + (ringRadius * Math.cos((angle*a) * (Math.PI/180)));
-								y = platformY + (ringRadius * Math.sin((angle*a) * (Math.PI/180)));
-
-							}
-
-							var radius = 10;
-							var mass = 5;
-							var friction = 0.95;
-							asteroids.push(new Asteroid(x, y, radius, mass, friction));
-						}
-					}
-
-
-					uiRemaining.innerHTML = asteroids.length - 1;
-					uiScore[0].appendChild(document.createTextNode("0"));
-					uiStats.style.display = "block";
-
-					//事件加在window而非canvas上应该是为了当鼠标移出canvas之后位置不停止更新
-					window.onmousedown = function(e) {
-						if(!playerSelected && player.x === playerOriginalX && player.y === playerOriginalY) {
-							
-							var canvasX = Math.floor(e.pageX - getOffsetLeft(canvas)); //508 is canvas's offsetleft
-							var canvasY = Math.floor(e.pageY - getOffsetTop(canvas)); // 21.5 is canvas's offsettop
-		
-						
-
-							if(!playGame) {
-								playGame = true;
-								animate();
-							}
-
-							var dX = player.x - canvasX;
-							var dY = player.y - canvasY;
-							var distance = Math.sqrt((dX*dX) + (dY*dY));
-							var padding = 5;
-
-							if(distance < player.radius + padding) {
-								powerX = player.x;
-								powerY = player.y;
-								playerSelected = true;
-							}
-						}
-					};
-
-					window.onmousemove = function(e) {
-						if(playerSelected) {
-							var canvasX = Math.floor(e.pageX - getOffsetLeft(canvas)); 
-							var canvasY = Math.floor(e.pageY - getOffsetTop(canvas)); 
-
-							var dX = canvasX - player.x;
-							var dY = canvasY - player.y;
-							var distance = Math.sqrt((dX*dX) + (dY*dY));
-
-							if(distance*playerVelocityDampener < playerMaxAbsVelocity) {
-								powerX = canvasX;
-								powerY = canvasY;
-							} else {
-								var ratio = playerMaxAbsVelocity / (distance*playerVelocityDampener); //power max de shihou will be a constant
-								powerX = player.x + (dX * ratio);
-								powerY = player.y + (dY * ratio); 
-							}
-						}
-					};
-
-					window.onmouseup = function(e) {
-						if(playerSelected) {
-							var dX = powerX - player.x;
-							var dY = powerY - player.y;
-							player.vX = -(dX * playerVelocityDampener);
-							player.vY = -(dY * playerVelocityDampener);
-							uiScore[0].innerHTML = (++score) + '';
-						}
-
-						playerSelected = false;
-						powerX = -1;
-						powerY = -1;
-
-					};
-
-
-					animate();
-				}
-
-				function init() {
-					uiStats.style.display = "none";
-					uiComplete.style.display = "none";
-
-					uiPlay.onclick = function(e) {
-						e.preventDefault();
-						uiIntro.style.display = "none";
-						startGame();
-					}
-
-					uiReset.onclick = function(e) {
-						e.preventDefault();
-						uiComplete.style.display = "none";
-						startGame();
-					}
-				}
-
-				
-				function animate() {
-					
-					context.clearRect(0, 0, canvasWidth, canvasHeight);
-
-					context.fillStyle = "rgb(100, 100, 100)";
-					context.beginPath();
-					context.arc(platformX, platformY, platformOuterRadius, 0, Math.PI*2, true);
-					context.closePath();
-					context.fill();
-
-					if(playerSelected) {
-						context.strokeStyle = "rgb(255, 255, 255)";
-						context.lineWidth = 3;
-						context.beginPath();
-						context.moveTo(player.x, player.y);
-						context.lineTo(powerX, powerY);
-						context.closePath();
-						context.stroke();
-					}
-
-
-					//notice that player.x is xiangdui to the canvas
-					if(player.x != playerOriginalX && player.y != playerOriginalY) {
-						if(player.vX === 0 && player.vY === 0) {
-							resetPlayer();
-						} else if(player.x + player.radius < 0) { 
-							resetPlayer();
-						} else if(player.x - player.radius > canvasWidth) {
-							resetPlayer();
-						} else if(player.y + player.radius < 0) {
-							resetPlayer();
-						} else if(player.y - player.radius > canvasHeight) {
-							resetPlayer();
-						}
-					}
-
-				
-					context.fillStyle = "rgb(255, 255, 255)";
-					
-
-					var deadAsteroids = [];
-
-					for(var i = 0; i < asteroids.length; i++) {
-						var as = asteroids[i];
-						for(var j = i + 1; j < asteroids.length; j++) {
-							var asii = asteroids[j];
-				
-							var dX = asii.x - as.x;
-							var dY = asii.y - as.y;
-							var distance = Math.sqrt((dX*dX)+(dY*dY));
-
-							if(distance < asii.radius + as.radius) {
-								var angle = Math.atan2(dY, dX);
-								var sine = Math.sin(angle);
-								var cosine = Math.cos(angle);
-
-								//difficult formula
-								var x = 0;
-								var y = 0;
-
-								var xii = dX * cosine + dY * sine;
-								var yii = dY * cosine - dX * sine;
-
-								var vX = as.vX * cosine + as.vY * sine;
-								var vY = as.vY * cosine - as.vX * sine;
-
-								var vXii = asii.vX * cosine + asii.vY * sine;
-								var vYii = asii.vY * cosine - asii.vX * sine;
-
-								// vX *= -1;
-								// vXii *= -1;
-								var vTotal = vX - vXii;
-								vX = ((as.mass - asii.mass) * vX + 2 * asii.mass * vXii) / (as.mass + asii.mass);
-								vXii = vTotal + vX;
-
-								xii = x + (as.radius + asii.radius);
-
-								as.x = as.x + (x * cosine - y * sine);
-								as.y = as.y + (y * cosine + x * sine);
-
-								asii.x = as.x + (xii * cosine - yii * sine);
-								asii.y = as.y + (yii * cosine + xii * sine);
-
-								as.vX = vX * cosine - vY * sine;
-								as.vY = vY * cosine + vX * sine;
-
-								asii.vX = vXii * cosine - vYii * sine;
-								asii.vY = vYii * cosine + vXii * sine;
-								
-
-							}
-						}
-
-						as.x += as.vX;
-						as.y += as.vY;
-
-						if(Math.abs(as.vX) > 0.1) {
-							as.vX *= as.friction;
-						} else {
-							as.vX = 0;
-						}
-
-						if(Math.abs(as.vY) > 0.1) {
-							as.vY *= as.friction;
-						} else {
-							as.vY = 0;
-						}
-
-						if(!as.player) {
-							var dXp = as.x - platformX;
-							var dYp = as.y - platformY;
-							var distanceP = Math.sqrt((dXp*dXp) + (dYp*dYp));
-							if(distanceP > platformOuterRadius) {
-								if(as.radius > 0) {
-									as.radius -= 2;
-								} else {
-									deadAsteroids.push(as);
-								}
-							}
-						}
-
-						context.save();
-
-					
-
-						context.beginPath();
-						context.arc(as.x, as.y, as.radius, 0, Math.PI*2, true);
-						context.closePath();
-						context.fill();	
-						context.restore();
-					}
-
-					if(deadAsteroids.length > 0) {
-						for(var di = 0; di < deadAsteroids.length; di++) {
-							var das = deadAsteroids[di];
-							asteroids.splice(asteroids.indexOf(das), 1);
-						}
-
-						var remaining = asteroids.length - 1; //minus one becaue that there is a player's asteroid
-						uiRemaining.innerHTML = remaining + "";
-
-						if(remaining === 0) {
-							playGame = false;
-							uiScore[1].innerHTML = score + " clicks..."
-							uiStats.style.display = "none";
-							uiComplete.style.display = "block";
-							window.onmouseup = null;
-							window.onmousemove = null;
-							window.onmousedown = null;
-						}
-					}
-
-					if(playGame) {
-						setTimeout(animate, 33);
-					}
-					
-
-					
-				}
-
-				init();
-
-
-			}
-		</script>
-	</head>
-	<body>
-		<div id = "game">
-			<div id = "gameUI">
-				<div id = "gameIntro">
-					<h1>Space bowling</h1>
-					<p>This is the first game.</p>
-					<p><a id = "gamePlay" class = "button" href = "">Play</a></p>
-				</div>
-				<div id = "gameStats">
-					<p>Asteroids: <span id = "gameRemaining"></span></p>
-					<p>Clicks: <span class = "gameScore"></span></p>
-					<p><a class = "gameReset" href="">Reset</a></p>
-				</div>
-				<div id = "gameComplete">
-					<h1>You yingle...</h1>
-					<p>Congratulations, you completed the game in <span class = "gameScore"> clicks.</span></p>
-					<p><a class = "gameReset button" href="">Play again</a></p>
-				</div>
-			</div>
-			<canvas id = "gameCanvas" width = "350" height = "600"></canvas>
-		</div>	
-	</body>
+</body>
 </html>
